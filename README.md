@@ -1,27 +1,27 @@
-"I am developing an authentication microservice that utilizes the powerful auth_models from the Django framework. To ensure secure storage of user data, I have chosen to integrate a PostgreSQL database. For streamlined user registration and login processes, I am incorporating the Knox library."
-and this a few steps to make your own login and register microservice :)
+<p> "I am developing an authentication microservice that utilizes the powerful auth_models from the Django framework. To ensure secure storage of user data, I have chosen to integrate a PostgreSQL database. For streamlined user registration and login processes, I am incorporating the Knox library."
+and this a few steps to make your own login and register microservice :) </p>
 
 
 1 - create virtual environement using 
-    python3 -m venv yourvritualenv
+  <code> python3 -m venv yourvritualenv  </code>  
 
 2- then activate your virtual environement with 
-    source virtualenvname/bin/activate  ( using terminal bash )
+    <code> source virtualenvname/bin/activate  ( using terminal bash )</code> 
 
 3 - install django 
-    pip install django 
+   <code>  pip install django </code> 
 
 4 - install django rest framework 
-    pip install djangorestframework
+   <code>  pip install djangorestframework</code> 
 
 5 - create your project
-    django-admin startproject name .
+   <code>  django-admin startproject name .</code> 
 
 6 - run the server ( for testing )
-    python3 manage.py runserver 
+   <code>  python3 manage.py runserver </code> 
 
 7 - create your application 
-    python3 manage.py startapp name 
+   <code>  python3 manage.py startapp name </code> 
 
 8 - add to your settings.py in your project folder 
     your application 'app_name'
@@ -29,7 +29,7 @@ and this a few steps to make your own login and register microservice :)
     add knox ( library that we gonna to use )
 
 9 - create file in your application folder "serializers.py" and add this code : 
-    from rest_framework import serializers
+  <code>   from rest_framework import serializers
     from django.contrib.auth.models import User
 
     # User Serializer
@@ -49,9 +49,9 @@ and this a few steps to make your own login and register microservice :)
             user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
 
             return user
-
+</code> 
 10 - then add urls.py to the same folder and add this code : 
-    from .views import RegisterAPI
+  <code>   from .views import RegisterAPI
     from django.urls import path
     from .views import LoginAPI
     from knox import views as knox_views
@@ -61,9 +61,9 @@ and this a few steps to make your own login and register microservice :)
         path('logout/', knox_views.LogoutView.as_view(), name='logout'),
         path('logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
     ]
-
+</code> 
 11 - now add to urls.py in project folder this code : 
-
+<code> 
     from django.contrib import admin
     from django.urls import path 
     from django.urls import include
@@ -80,7 +80,7 @@ and this a few steps to make your own login and register microservice :)
         path(r'^$', schema_view),
     ]
 
-
+</code> 
 12 - for now if you want to use sqlite you can just run the server ( python3 manage.py runserver )
 
 13 - if you want to add your postgresSQL 
